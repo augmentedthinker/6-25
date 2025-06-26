@@ -5,11 +5,9 @@
     <title>Interactive VR Scene</title>
     <!-- Essential for responsive layout on all devices, including VR headsets -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Include the A-Frame library from a Content Delivery Network (CDN).
-         This is like including a special toolbox that makes building VR easy with HTML. -->
+    <!-- Include the A-Frame library. This is our core VR toolbox. -->
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-    <!-- NEW: Include aframe-extras for more robust controls and other utilities.
-         This is our 'advanced toolbox' that helps movement work better. -->
+    <!-- Include aframe-extras for robust controls like 'movement-controls'. -->
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v7.2.0/dist/aframe-extras.min.js"></script>
 
     <style>
@@ -80,22 +78,15 @@
 
       <!--
         <a-camera> defines the user's viewpoint in the VR scene.
-        'look-controls' allows the user to look around with their head movements (or mouse).
-        'wasd-controls' allows movement using WASD keys (or touchpad/joystick in VR).
-        'position="0 1.6 0"' sets the camera's height to 1.6 meters, simulating average human height.
-
-        'movement-controls' enables movement using VR controllers (like the thumbstick)
-        and also provides keyboard controls for desktop testing.
-        With aframe-extras included, this component should now better interpret your Quest 2 controller input.
-
-        FIXED: Added 'oculus-touch-controls' to ensure proper controller input is recognized,
-        which helps resolve the 'object3D' null error.
+        'look-controls' allows the user to look around with their head movements.
+        'oculus-touch-controls' specifically enables recognition of Oculus Quest 2 controller input.
+        'movement-controls' handles the actual continuous movement based on controller input (like the thumbstick).
+        'position="0 1.6 0"' sets the camera's initial height.
       -->
       <a-camera
         look-controls
-        wasd-controls
+        oculus-touch-controls="model: false" <!-- 'model: false' hides the default controller models if you don't need them -->
         movement-controls="speed: 0.1"
-        oculus-touch-controls
         position="0 1.6 0">
         <!--
           <a-cursor> is crucial for interaction in VR. It provides a visual reticle
@@ -174,3 +165,4 @@
     </a-scene>
   </body>
 </html>
+
