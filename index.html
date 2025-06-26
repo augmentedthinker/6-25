@@ -44,10 +44,14 @@
       device-orientation-permission-ui="enabled: false">
       
       <a-assets>
-        <!-- Assets can be preloaded here -->
+        <!-- Load your matrix pattern texture from GitHub -->
+        <img id="patternTexture" src="https://raw.githubusercontent.com/augmentedthinker/6-25/main/matrix.png" crossorigin="anonymous">
       </a-assets>
 
-      <a-sky color="#ECECEC"></a-sky>
+      <a-sky 
+        material="src: #patternTexture; repeat: 8 4"
+        rotation="0 0 0">
+      </a-sky>
 
       <!-- Camera rig for VR movement -->
       <a-entity 
@@ -88,12 +92,13 @@
         </a-entity>
       </a-entity>
 
-      <!-- Interactive objects -->
+      <!-- Interactive objects with pattern texture -->
       <a-box
         id="red-box"
         class="collidable"
         position="-2 1 -5"
         rotation="0 45 0"
+        material="src: #patternTexture; repeat: 2 2"
         color-switcher="colors: #FF0000, #00FF00, #0000FF, #FFFF00, #800080, #000000"
         shadow>
       </a-box>
@@ -103,6 +108,7 @@
         class="collidable"
         position="0 1.25 -5"
         radius="1.25"
+        material="src: #patternTexture; repeat: 3 3"
         color-switcher="colors: #00FF00, #0000FF, #FFFF00, #800080, #000000, #FF0000"
         shadow>
       </a-sphere>
@@ -113,17 +119,18 @@
         position="2 0.75 -5"
         radius="0.5"
         height="1.5"
+        material="src: #patternTexture; repeat: 2 1"
         color-switcher="colors: #0000FF, #FFFF00, #800080, #000000, #FF0000, #00FF00"
         shadow>
       </a-cylinder>
 
-      <!-- Ground plane -->
+      <!-- Ground plane with pattern -->
       <a-plane
         position="0 0 -5"
         rotation="-90 0 0"
         width="10"
         height="10"
-        color="#7BC8A4"
+        material="src: #patternTexture; repeat: 5 5"
         shadow>
       </a-plane>
 
