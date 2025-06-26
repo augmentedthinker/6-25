@@ -60,19 +60,26 @@
       device-orientation-permission-ui="enabled: false">
       
       <a-assets>
-        <!-- Multiple fallback options for matrix texture -->
-        <img id="patternTexture" 
+        <!-- Multiple texture options for VR compatibility -->
+        
+        <!-- Option 1: Try your GitHub image -->
+        <img id="githubTexture" 
              src="https://raw.githubusercontent.com/augmentedthinker/6-25/main/matrix.png" 
              crossorigin="anonymous">
         
-        <!-- Fallback matrix pattern using SVG -->
-        <img id="fallbackTexture" 
-             src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcz4KICAgIDxwYXR0ZXJuIGlkPSJtYXRyaXgiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+CiAgICAgIDxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0iIzAwMTEwMCIvPgogICAgICA8dGV4dCB4PSI1IiB5PSIxNSIgZm9udC1mYW1pbHk9Im1vbm9zcGFjZSIgZm9udC1zaXplPSIxMCIgZmlsbD0iIzAwRkYwMCI+MTwvdGV4dD4KICAgIDwvcGF0dGVybj4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNtYXRyaXgpIi8+Cjwvc3ZnPg==" 
+        <!-- Option 2: Reliable CDN matrix texture -->
+        <img id="cdnTexture" 
+             src="https://cdn.jsdelivr.net/gh/aframevr/sample-assets@master/assets/images/ground.jpg" 
              crossorigin="anonymous">
+             
+        <!-- Option 3: Simple canvas-generated texture -->
+        <canvas id="matrixCanvas" width="256" height="256" style="display: none;"></canvas>
+        
+        <!-- Option 4: A-Frame procedural material -->
       </a-assets>
 
       <a-sky 
-        material="src: #fallbackTexture; repeat: 8 4"
+        material="src: #canvasTexture; repeat: 4 2"
         rotation="0 0 0">
       </a-sky>
 
@@ -115,13 +122,13 @@
         </a-entity>
       </a-entity>
 
-      <!-- Interactive objects with pattern texture -->
+      <!-- Interactive objects with VR-compatible matrix texture -->
       <a-box
         id="red-box"
         class="collidable"
         position="-2 1 -5"
         rotation="0 45 0"
-        material="src: #fallbackTexture; repeat: 2 2"
+        material="src: #canvasTexture; repeat: 1 1"
         color-switcher="colors: #FF0000, #00FF00, #0000FF, #FFFF00, #800080, #000000"
         shadow>
       </a-box>
@@ -131,7 +138,7 @@
         class="collidable"
         position="0 1.25 -5"
         radius="1.25"
-        material="src: #fallbackTexture; repeat: 3 3"
+        material="src: #canvasTexture; repeat: 2 2"
         color-switcher="colors: #00FF00, #0000FF, #FFFF00, #800080, #000000, #FF0000"
         shadow>
       </a-sphere>
@@ -142,18 +149,18 @@
         position="2 0.75 -5"
         radius="0.5"
         height="1.5"
-        material="src: #fallbackTexture; repeat: 2 1"
+        material="src: #canvasTexture; repeat: 1 2"
         color-switcher="colors: #0000FF, #FFFF00, #800080, #000000, #FF0000, #00FF00"
         shadow>
       </a-cylinder>
 
-      <!-- Ground plane with pattern -->
+      <!-- Ground plane with matrix pattern -->
       <a-plane
         position="0 0 -5"
         rotation="-90 0 0"
         width="10"
         height="10"
-        material="src: #fallbackTexture; repeat: 5 5"
+        material="src: #canvasTexture; repeat: 3 3"
         shadow>
       </a-plane>
 
