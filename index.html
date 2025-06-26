@@ -79,8 +79,11 @@
         'look-controls' allows the user to look around with their head movements (or mouse).
         'wasd-controls' allows movement using WASD keys (or touchpad/joystick in VR).
         'position="0 1.6 0"' sets the camera's height to 1.6 meters, simulating average human height.
+        
+        NEW: 'movement-controls' enables movement using VR controllers (like the thumbstick)
+        and also provides keyboard controls for desktop testing.
       -->
-      <a-camera look-controls wasd-controls position="0 1.6 0">
+      <a-camera look-controls wasd-controls movement-controls="speed: 0.1" position="0 1.6 0">
         <!--
           <a-cursor> is crucial for interaction in VR. It provides a visual reticle
           that changes when it hovers over interactive objects, indicating they can be clicked.
