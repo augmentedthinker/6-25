@@ -40,11 +40,8 @@
           // Initialize the current color index to 0 (the first color in our list)
           this.currentColorIndex = 0;
 
-          // Set the initial color of the object with matrix texture
-          el.setAttribute('material', {
-            color: data.colors[this.currentColorIndex],
-            src: '#matrixTexture'
-          });
+          // Set the initial color of the object
+          el.setAttribute('material', 'color', data.colors[this.currentColorIndex]);
 
           // Add an event listener for 'click' events on this object.
           // When the object is clicked, the function inside will be executed.
@@ -52,11 +49,8 @@
             // Increment the color index. Use the modulo operator (%) to loop back to 0
             // when we reach the end of the colors array.
             this.currentColorIndex = (this.currentColorIndex + 1) % data.colors.length;
-            // Update the object's material color to the new color while keeping the texture.
-            el.setAttribute('material', {
-              color: data.colors[this.currentColorIndex],
-              src: '#matrixTexture'
-            });
+            // Update the object's material color to the new color.
+            el.setAttribute('material', 'color', data.colors[this.currentColorIndex]);
             console.log(`Object clicked! New color: ${data.colors[this.currentColorIndex]}`);
           });
         }
@@ -81,10 +75,7 @@
         <a-sky> creates a simple sky around our scene.
         Now with matrix texture applied.
       -->
-      <a-sky 
-        material="src: #matrixTexture; color: #ECECEC"
-        opacity="0.8">
-      </a-sky>
+      <a-sky src="#matrixTexture" color="#ECECEC"></a-sky>
 
       <!--
         <a-camera> defines the user's viewpoint in the VR scene.
@@ -112,7 +103,8 @@
           fuse="false"
           position="0 0 -1"
           geometry="primitive: ring; radiusOuter: 0.008; radiusInner: 0.005"
-          material="color: #00FF00; shader: flat; src: #matrixTexture">
+          material="color: #00FF00; shader: flat"
+          src="#matrixTexture">
         </a-cursor>
       </a-camera>
 
@@ -135,7 +127,8 @@
         class="collidable"
         position="-2 1 -5"
         rotation="0 45 0"
-        material="src: #matrixTexture; color: #FF0000"
+        src="#matrixTexture"
+        color="#FF0000"
         color-switcher="colors: #FF0000, #00FF00, #0000FF, #FFFF00, #800080, #000000"
         shadow>
       </a-box>
@@ -146,7 +139,8 @@
         class="collidable"
         position="0 1.25 -5"
         radius="1.25"
-        material="src: #matrixTexture; color: #00FF00"
+        src="#matrixTexture"
+        color="#00FF00"
         color-switcher="colors: #00FF00, #0000FF, #FFFF00, #800080, #000000, #FF0000"
         shadow>
       </a-sphere>
@@ -158,7 +152,8 @@
         position="2 0.75 -5"
         radius="0.5"
         height="1.5"
-        material="src: #matrixTexture; color: #0000FF"
+        src="#matrixTexture"
+        color="#0000FF"
         color-switcher="colors: #0000FF, #FFFF00, #800080, #000000, #FF0000, #00FF00"
         shadow>
       </a-cylinder>
@@ -169,7 +164,8 @@
         rotation="-90 0 0"
         width="10"
         height="10"
-        material="src: #matrixTexture; color: #7BC8A4; repeat: 4 4"
+        src="#matrixTexture"
+        color="#7BC8A4"
         shadow>
       </a-plane>
 
