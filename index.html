@@ -37,6 +37,22 @@
           });
         }
       });
+
+      // Debug texture loading
+      document.addEventListener('DOMContentLoaded', function() {
+        const img = document.querySelector('#patternTexture');
+        if (img) {
+          img.onload = function() {
+            console.log('✅ Texture loaded successfully!', this.src);
+          };
+          img.onerror = function() {
+            console.error('❌ Failed to load texture:', this.src);
+            console.log('Trying fallback texture...');
+            // Fallback to a working matrix-style texture
+            this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcz4KICAgIDxwYXR0ZXJuIGlkPSJtYXRyaXgiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+CiAgICAgIDxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0iIzAwMDAwMCIvPgogICAgICA8dGV4dCB4PSI1IiB5PSIxNSIgZm9udC1mYW1pbHk9Im1vbm9zcGFjZSIgZm9udC1zaXplPSIxMiIgZmlsbD0iIzAwRkYwMCI+MTwvdGV4dD4KICAgIDwvcGF0dGVybj4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNtYXRyaXgpIi8+Cjwvc3ZnPg==';
+          };
+        }
+      });
     </script>
 
     <a-scene 
@@ -44,12 +60,19 @@
       device-orientation-permission-ui="enabled: false">
       
       <a-assets>
-        <!-- Load your matrix pattern texture from GitHub -->
-        <img id="patternTexture" src="https://raw.githubusercontent.com/augmentedthinker/6-25/main/matrix.png" crossorigin="anonymous">
+        <!-- Multiple fallback options for matrix texture -->
+        <img id="patternTexture" 
+             src="https://raw.githubusercontent.com/augmentedthinker/6-25/main/matrix.png" 
+             crossorigin="anonymous">
+        
+        <!-- Fallback matrix pattern using SVG -->
+        <img id="fallbackTexture" 
+             src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcz4KICAgIDxwYXR0ZXJuIGlkPSJtYXRyaXgiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+CiAgICAgIDxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0iIzAwMTEwMCIvPgogICAgICA8dGV4dCB4PSI1IiB5PSIxNSIgZm9udC1mYW1pbHk9Im1vbm9zcGFjZSIgZm9udC1zaXplPSIxMCIgZmlsbD0iIzAwRkYwMCI+MTwvdGV4dD4KICAgIDwvcGF0dGVybj4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNtYXRyaXgpIi8+Cjwvc3ZnPg==" 
+             crossorigin="anonymous">
       </a-assets>
 
       <a-sky 
-        material="src: #patternTexture; repeat: 8 4"
+        material="src: #fallbackTexture; repeat: 8 4"
         rotation="0 0 0">
       </a-sky>
 
@@ -98,7 +121,7 @@
         class="collidable"
         position="-2 1 -5"
         rotation="0 45 0"
-        material="src: #patternTexture; repeat: 2 2"
+        material="src: #fallbackTexture; repeat: 2 2"
         color-switcher="colors: #FF0000, #00FF00, #0000FF, #FFFF00, #800080, #000000"
         shadow>
       </a-box>
@@ -108,7 +131,7 @@
         class="collidable"
         position="0 1.25 -5"
         radius="1.25"
-        material="src: #patternTexture; repeat: 3 3"
+        material="src: #fallbackTexture; repeat: 3 3"
         color-switcher="colors: #00FF00, #0000FF, #FFFF00, #800080, #000000, #FF0000"
         shadow>
       </a-sphere>
@@ -119,7 +142,7 @@
         position="2 0.75 -5"
         radius="0.5"
         height="1.5"
-        material="src: #patternTexture; repeat: 2 1"
+        material="src: #fallbackTexture; repeat: 2 1"
         color-switcher="colors: #0000FF, #FFFF00, #800080, #000000, #FF0000, #00FF00"
         shadow>
       </a-cylinder>
@@ -130,7 +153,7 @@
         rotation="-90 0 0"
         width="10"
         height="10"
-        material="src: #patternTexture; repeat: 5 5"
+        material="src: #fallbackTexture; repeat: 5 5"
         shadow>
       </a-plane>
 
